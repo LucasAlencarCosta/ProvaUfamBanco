@@ -1,3 +1,4 @@
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 class Agencia{
@@ -26,6 +27,43 @@ class Banco{
         Nome = nome;
     }
 	private int currentArray = 0;
+    public void switchcase(int choice){
+        boolean valido = false;
+        Scanner ler = new Scanner(System.in);
+        try{
+            while(choice != 5){
+            main.texto();
+            choice = ler.nextInt();
+            valido = true;
+            switch(choice){
+                case 1:
+                    System.out.println("Digite o nome da agencia");
+                    String b = ler.next();
+                    System.out.println("Digite o numero da agencia");
+                    int a = ler.nextInt();
+                    criarAgencia(a,b);
+                    break;
+                case 2:
+                    System.out.println("Digite o numero da agencia");
+                    int c = ler.nextInt();
+                    removerAgencia(c);
+                    break;
+                case 3:
+                    listarAgencias();
+                    break;
+                default:
+                System.out.println("\nInsira um valor válido");
+                valido = false;
+                break;
+            }
+        }
+    }catch(InputMismatchException e){
+        System.out.println("\nInsira um valor válido");
+        switchcase(0);
+    }
+            ler.close();
+        }
+
 	public void criarAgencia(int i, String n){
         try{
 		Agencias[currentArray] = new Agencia();
@@ -81,31 +119,8 @@ class main{
 
 	}
 	public static void main(String [] args){
-		int choice = 0;
-		Scanner ler = new Scanner(System.in);
 		Banco banco = new Banco();
         System.out.println("Bem vindo ao sistema de gerenciamento do Banco Icomp");
-        while(choice != 5){
-        texto();
-		choice = ler.nextInt();
-		switch(choice){
-			case 1:
-                System.out.println("Digite o nome da agencia");
-                String b = ler.next();
-                System.out.println("Digite o numero da agencia");
-                int a = ler.nextInt();
-                banco.criarAgencia(a,b);
-                break;
-            case 2:
-                System.out.println("Digite o numero da agencia");
-                int c = ler.nextInt();
-                banco.removerAgencia(c);
-                break;
-            case 3:
-                banco.listarAgencias();
-                break;
-		}
+        banco.switchcase(0);
     }
-        ler.close();
-	}
 }
