@@ -27,14 +27,14 @@ class Banco{
         Nome = nome;
     }
 	private int currentArray = 0;
-    public void switchcase(int choice){
-        boolean valido = false;
+
+    public void switchcase(){
+        int choice = 0;
         Scanner ler = new Scanner(System.in);
         try{
             while(choice != 5){
             main.texto();
             choice = ler.nextInt();
-            valido = true;
             switch(choice){
                 case 1:
                     System.out.println("Digite o nome da agencia");
@@ -53,13 +53,12 @@ class Banco{
                     break;
                 default:
                 System.out.println("\nInsira um valor válido");
-                valido = false;
                 break;
             }
         }
     }catch(InputMismatchException e){
         System.out.println("\nInsira um valor válido");
-        switchcase(0);
+        switchcase();
     }
             ler.close();
         }
@@ -121,6 +120,6 @@ class main{
 	public static void main(String [] args){
 		Banco banco = new Banco();
         System.out.println("Bem vindo ao sistema de gerenciamento do Banco Icomp");
-        banco.switchcase(0);
+        banco.switchcase();
     }
 }
