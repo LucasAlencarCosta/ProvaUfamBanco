@@ -1,6 +1,6 @@
 import java.util.InputMismatchException;
 import java.util.Scanner;
-
+//Somente um projeto da faculdade no qual não poderia ser feito utilizando algum padrão de arquitetura.
 class Agencia{
 	private String nome;
 	private int numero;
